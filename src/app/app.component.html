@@ -1,0 +1,136 @@
+<input type="text" [value]="name"/>
+<p [textContent]="name"></p>
+<input [attr.value]="text" />
+<p>Платформа: {{platform}}</p>
+<p>Количество ахегао с окончанием {{count}}</p>
+<button (click)="increase($event)">ААААХххх</button>
+<p>Сиквиртанутая {{name}}</p>
+<input type="text" [(ngModel)]="name" /> <br><br>
+<input type="text" [(ngModel)]="name" />
+<div *ngIf = "isAdmin">
+    text
+</div>
+<div *ngIf = "num <= 18">
+    уйди отсюда малолетка
+</div>
+@if (isAdmin){
+    <div>
+        hilova
+    </div>
+}
+@if(num < 18){
+    <div>
+        иди отсюда
+    </div>
+}
+@if (isAdmin){
+    <div>
+        da da papochka prishel
+    </div>
+} @else {
+    <div>
+        neeeeeeeeeeeee eto kakoi to sosunok
+    </div>
+}
+@if (day <=10){
+    pervaya
+} @else if(day <= 20){
+    vtoraya
+} @else if(day <= 31){
+    tretiya
+}
+@switch (lang){
+   @case('ru'){
+    <div>
+        пошел бухать!
+    </div>
+   }
+   @case ('en'){
+    <div>
+        go frick go!
+    </div>
+   }
+   @case ('de'){
+    <div>
+        что то на немецком
+    </div>
+   }
+   @default{
+    <div>
+        error
+    </div>
+   }
+}
+<ng-template *ngIf = "isAdmin">
+    <div>
+        tex
+    </div>
+    <div>
+        texetext
+    </div>
+    <div>
+        texetexetxete
+    </div>
+</ng-template>
+<ng-template [ngIf]="age < 18">
+	<div>
+		poka
+	</div>
+</ng-template>
+<ul>
+    <li *ngFor ="let el of arr">
+            {{ el * el }}
+    </li>
+</ul>
+@for (elem of arr; track $index){
+    <div>
+        {{ elem }}
+    </div>
+}
+<ul>
+    <li *ngFor ="let ele of arr2; let i = index">
+            {{ i + 1}}
+            {{ ele }}
+    </li>
+</ul>
+<ul>
+    @for (elele of arr2; track $index){
+        <li>
+            {{ elele }}
+            {{ $index + 1}}
+        </li>
+    }
+</ul>
+<ul>
+    <li *ngFor ="let elell of arr2; let first = first"
+                [style.color]="first ? 'red' : 'black'">
+            {{ elell }}
+    </li>
+</ul>
+
+<ul>
+    <li *ngFor ="let elelle of arr2; let last = last"
+                [style.color]="last ? 'red' : 'black'">
+            {{ elelle }}
+    </li>
+</ul>
+<ul>
+    <li *ngFor ="let elell of arr2; let first = first
+                let last = last"
+                [style.color]="first ? 'red' : (last ? 'green' : 'black')">
+            {{ elell }}
+    </li>
+</ul>
+<ul>
+	<li *ngFor="let le of arr; let even = even"
+        [style.color]="even ? 'red' : 'green'">
+		{{ le }}
+	</li>
+</ul>
+
+<ul>
+	<li *ngFor="let lel of arr; let odd = odd"
+        [style.color]="odd ? 'green' : 'red'">
+		{{ lel }}
+	</li>
+</ul>
