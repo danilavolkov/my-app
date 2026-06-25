@@ -13,8 +13,8 @@ import {NgFor} from "@angular/common";
 })
 export class AppComponent {
     name = "Джанет";
-    platform = "Patreon";
-    text = "Самая продоваемая сейчас";
+    platform = "YouTube";
+    text = "Самая популярная сейчас";
     count: number = 0;
     increase($event : any): void {
         this.count++;
