@@ -1,4 +1,4 @@
-<input type="text" [value]="name"/>
+<!-- <input type="text" [value]="name"/>
 <p [textContent]="name"></p>
 <input [attr.value]="text" />
 <p>Платформа: {{platform}}</p>
@@ -134,3 +134,58 @@
 		{{ lel }}
 	</li>
 </ul>
+<input [(ngModel)]="num" type="number" />
+@if (num == 10){
+    <p>
+        Дьесьять
+    </p>
+} @else {
+    <p>
+       не дьесьять 
+    </p>
+}-->
+<div>
+  <label>a = </label>
+  <input type="number" [(ngModel)]="aa" />
+</div>
+
+<div>
+  <label>b = </label>
+  <input type="number" [(ngModel)]="bb" />
+</div>
+
+<div>
+  <label bold>Операция: </label>
+  <input [(ngModel)]="opp" placeholder="Введите +, -, *, /" />
+</div>
+<p>
+   a = {{aa}}    b = {{bb}}
+</p>
+   <p>
+    Результат: 
+    @switch (opp){
+        @case("+"){
+        {{aa + bb}}
+        }
+        @case("-"){
+            {{aa - bb}}
+        }
+        @case("*"){
+            {{aa * bb}}
+        }
+        @case("/"){
+            {{aa / bb}}
+        }
+        @default{
+            Че за операция?
+        }
+    }  
+</p>
+
+<p *while="condition">
+      Первый параграф
+    </p>
+    <p *while="!condition">
+      Второй параграф
+    </p>
+    <button (click)="toggle()">Toggle</button>

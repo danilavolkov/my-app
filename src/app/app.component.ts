@@ -1,13 +1,16 @@
 import { Component, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import {ChildComponent} from './child.component';
+import { BoldDirective} from "./bold.directive";
+import {WhileDirective} from "./while.directive";
 import { RouterOutlet } from '@angular/router';
-import {NgIf} from "@angular/common";
-import {NgFor} from "@angular/common";
+// import {NgIf} from "@angular/common";
+// import {NgFor} from "@angular/common";
 
 @Component({
   selector: 'my-app',
   standalone: true,
-  imports: [FormsModule, NgIf, NgFor],
+  imports: [ChildComponent, FormsModule, BoldDirective, WhileDirective],
   styleUrls: ['./app.component.css'],
   templateUrl: './app.component.html'
 })
@@ -27,4 +30,11 @@ public lang: string = 'de';
 public age: number = 12;
 public arr: number[] = [1, 2, 3, 4, 5];
 public arr2: string[] = ['a', 'b', 'c', 'd'];
+public aa: number = 10;
+public bb: number = 5;
+public opp: string = "-";
+condition = true;
+    toggle(){
+        this.condition=!this.condition;
+    }
 }
