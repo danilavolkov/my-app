@@ -7,11 +7,14 @@ export class BoldDirective{
       
     @Input() selectedSize = "24px";
     @Input() defaultSize = "16px";
+    @Input() selectedColor = "green";
       
     private fontSize : string;
     private fontWeight = "normal";
+    private color: string;
     constructor(){
         this.fontSize = this.defaultSize;
+        this.color = "purple";
     }
      
     @HostBinding("style.fontSize") get getFontSize(){
@@ -23,6 +26,10 @@ export class BoldDirective{
          
         return this.fontWeight;
     }
+
+    @HostBinding("style.color") get getColor(){
+        return this.color;
+    }
      
     @HostBinding("style.cursor") get getCursor(){
         return "pointer";
@@ -31,10 +38,12 @@ export class BoldDirective{
     @HostListener("mouseenter") onMouseEnter() {
         this.fontWeight ="bold";
         this.fontSize = this.selectedSize;
+        this.color = this.selectedColor;
     }
  
     @HostListener("mouseleave") onMouseLeave() {
         this.fontWeight = "normal";
         this.fontSize = this.defaultSize;
+        this.color = "purple";
     }
 }

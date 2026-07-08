@@ -1,9 +1,313 @@
-h1, h2{color:rgb(252, 8, 8);}
-p{font-size:13px;}
-:host {
-    font-family: Verdana;
-    color: #c41bd7;
+* {
+  box-sizing: border-box;
 }
 
-div {width:50px; height:50px; border:1px solid #ccc}
-.redbox{background-color:red;}
+:host {
+  display: block;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: #f0f4f8;
+  min-height: 100vh;
+  padding: 20px;
+}
+
+.app-wrapper {
+  max-width: 1300px;
+  margin: 0 auto;
+  background: white;
+  border-radius: 20px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+  overflow: hidden;
+  padding: 30px;
+}
+
+.site-header {
+  background: linear-gradient(135deg, #1a2a3a 0%, #2c4a6a 100%);
+  color: white;
+  padding: 30px 35px;
+  border-radius: 16px;
+  margin-bottom: 30px;
+  box-shadow: 0 4px 15px rgba(26, 42, 58, 0.25);
+}
+
+.site-header h1 {
+  margin: 0;
+  font-size: 2.2rem;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+}
+
+.subtitle {
+  margin: 6px 0 0;
+  opacity: 0.85;
+  font-weight: 300;
+  font-size: 1rem;
+}
+
+.tab-navigation {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 25px;
+  padding: 6px;
+  background: #f8fafc;
+  border-radius: 14px;
+  border: 1px solid #e8edf3;
+}
+
+.tab-button {
+  padding: 10px 22px;
+  border: none;
+  background: transparent;
+  border-radius: 40px;
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: #5a6f82;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  flex: 0 1 auto;
+}
+
+.tab-button:hover {
+  background: #e8edf3;
+  color: #1a2a3a;
+}
+
+.tab-button.active {
+  background: #2c4a6a;
+  color: white;
+  box-shadow: 0 4px 12px rgba(44, 74, 106, 0.3);
+}
+
+.tab-content-wrapper {
+  background: white;
+}
+
+.tab-pane {
+  display: none;
+  animation: fadeIn 0.3s ease;
+}
+
+.tab-pane.active {
+  display: block;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.task-container {
+  background: #fafcfe;
+  padding: 24px 28px;
+  border-radius: 14px;
+  border: 1px solid #eef2f7;
+}
+
+input[type="text"],
+input[type="number"] {
+  padding: 8px 16px;
+  border: 2px solid #dce4ec;
+  border-radius: 30px;
+  font-size: 0.95rem;
+  transition: all 0.2s ease;
+  background: white;
+  margin: 4px 6px 4px 0;
+  min-width: 120px;
+}
+
+input[type="text"]:focus,
+input[type="number"]:focus {
+  outline: none;
+  border-color: #2c4a6a;
+  box-shadow: 0 0 0 3px rgba(44, 74, 106, 0.1);
+}
+
+button {
+  padding: 8px 22px;
+  border: none;
+  border-radius: 30px;
+  font-size: 0.95rem;
+  font-weight: 500;
+  background: #e8edf3;
+  color: #2c3e50;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  margin: 4px 4px 4px 0;
+}
+
+button:hover {
+  background: #d5dee8;
+  transform: translateY(-1px);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+button:active {
+  transform: translateY(0);
+}
+
+p {
+  margin: 8px 0;
+  line-height: 1.6;
+  color: #1e2e3e;
+}
+
+label {
+  font-weight: 500;
+  color: #2c3e50;
+  margin-right: 4px;
+}
+
+ul {
+  padding-left: 24px;
+  margin: 10px 0;
+}
+
+li {
+  padding: 4px 0;
+  color: #1e2e3e;
+  font-size: 0.95rem;
+}
+
+div[ngIf],
+div.ng-star-inserted {
+  margin: 6px 0;
+}
+
+.task-container > div,
+.task-container > p {
+  padding: 6px 0;
+}
+
+.task-container > div > div {
+  padding: 6px 14px;
+  margin: 6px 0;
+  background: #f0f5fa;
+  border-radius: 8px;
+  border-left: 4px solid #2c4a6a;
+}
+
+.ng-template {
+  display: inline-block;
+}
+
+ul li {
+  background: #f8fafc;
+  margin: 4px 0;
+  padding: 4px 12px;
+  border-radius: 6px;
+  list-style-position: inside;
+}
+
+.task-container > div {
+  padding: 4px 0;
+}
+
+@media (max-width: 768px) {
+  .app-wrapper {
+    padding: 16px;
+  }
+
+  .site-header {
+    padding: 20px 24px;
+  }
+
+  .site-header h1 {
+    font-size: 1.6rem;
+  }
+
+  .tab-navigation {
+    gap: 4px;
+    padding: 4px;
+  }
+
+  .tab-button {
+    padding: 8px 14px;
+    font-size: 0.85rem;
+  }
+
+  .task-container {
+    padding: 16px;
+  }
+
+  input[type="text"],
+  input[type="number"] {
+    min-width: 80px;
+    font-size: 0.9rem;
+    padding: 6px 12px;
+  }
+
+  button {
+    padding: 6px 16px;
+    font-size: 0.85rem;
+  }
+
+  ul {
+    padding-left: 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .site-header h1 {
+    font-size: 1.3rem;
+  }
+
+  .tab-button {
+    font-size: 0.8rem;
+    padding: 6px 10px;
+  }
+
+  .task-container {
+    padding: 12px;
+  }
+}
+
+.task-container br {
+  display: none;
+}
+
+input[ngModel] {
+  background: #ffffff;
+}
+
+.task-container > div:has(> input) {
+  padding: 8px 0;
+}
+
+.task-container p {
+  background: #f8fafc;
+  padding: 6px 14px;
+  border-radius: 8px;
+  margin: 8px 0;
+}
+
+button[click] {
+  background: #2c4a6a;
+  color: white;
+}
+
+button[click]:hover {
+  background: #1a3a5a;
+}
+
+data-comp {
+  display: block;
+  background: #f0f5fa;
+  padding: 16px 20px;
+  border-radius: 10px;
+  margin: 10px 0;
+  border: 2px dashed #b0c4d8;
+}
+
+data-comp:before {
+  content: "data-comp";
+  display: block;
+  font-weight: 600;
+  color: #2c4a6a;
+  margin-bottom: 4px;
+}

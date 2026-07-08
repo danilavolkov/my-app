@@ -1,191 +1,257 @@
-<!-- <input type="text" [value]="name"/>
-<p [textContent]="name"></p>
-<input [attr.value]="text" />
-<p>Платформа: {{platform}}</p>
-<p>Количество приседания с окончанием {{count}}</p>
-<button (click)="increase($event)">делать</button>
-<p>Лучшая {{name}}</p>
-<input type="text" [(ngModel)]="name" /> <br><br>
-<input type="text" [(ngModel)]="name" />
-<div *ngIf = "isAdmin">
-    text
-</div>
-<div *ngIf = "num <= 18">
-    уйди отсюда малолетка
-</div>
-@if (isAdmin){
-    <div>
-        hilova
-    </div>
-}
-@if(num < 18){
-    <div>
-        иди отсюда
-    </div>
-}
-@if (isAdmin){
-    <div>
-        da da
-    </div>
-} @else {
-    <div>
-        neeeeeeeeeeeee eto kakoi to sosunok
-    </div>
-}
-@if (day <=10){
-    pervaya
-} @else if(day <= 20){
-    vtoraya
-} @else if(day <= 31){
-    tretiya
-}
-@switch (lang){
-   @case('ru'){
-    <div>
-        пошел бухать!
-    </div>
-   }
-   @case ('en'){
-    <div>
-        go frick go!
-    </div>
-   }
-   @case ('de'){
-    <div>
-        что то на немецком
-    </div>
-   }
-   @default{
-    <div>
-        error
-    </div>
-   }
-}
-<ng-template *ngIf = "isAdmin">
-    <div>
-        tex
-    </div>
-    <div>
-        texetext
-    </div>
-    <div>
-        texetexetxete
-    </div>
-</ng-template>
-<ng-template [ngIf]="age < 18">
-	<div>
-		poka
-	</div>
-</ng-template>
-<ul>
-    <li *ngFor ="let el of arr">
-            {{ el * el }}
-    </li>
-</ul>
-@for (elem of arr; track $index){
-    <div>
-        {{ elem }}
-    </div>
-}
-<ul>
-    <li *ngFor ="let ele of arr2; let i = index">
-            {{ i + 1}}
-            {{ ele }}
-    </li>
-</ul>
-<ul>
-    @for (elele of arr2; track $index){
-        <li>
-            {{ elele }}
-            {{ $index + 1}}
-        </li>
-    }
-</ul>
-<ul>
-    <li *ngFor ="let elell of arr2; let first = first"
-                [style.color]="first ? 'red' : 'black'">
-            {{ elell }}
-    </li>
-</ul>
+<div class="app-wrapper">
+  <header class="site-header">
+    <h1>Практос</h1>
+    <p class="subtitle">Практикование</p>
+  </header>
 
-<ul>
-    <li *ngFor ="let elelle of arr2; let last = last"
-                [style.color]="last ? 'red' : 'black'">
-            {{ elelle }}
-    </li>
-</ul>
-<ul>
-    <li *ngFor ="let elell of arr2; let first = first
-                let last = last"
-                [style.color]="first ? 'red' : (last ? 'green' : 'black')">
-            {{ elell }}
-    </li>
-</ul>
-<ul>
-	<li *ngFor="let le of arr; let even = even"
-        [style.color]="even ? 'red' : 'green'">
-		{{ le }}
-	</li>
-</ul>
+  <nav class="tab-navigation">
+    <button class="tab-button active" data-tab="tab1">Задание 1</button>
+    <button class="tab-button" data-tab="tab2">Задание 2</button>
+    <button class="tab-button" data-tab="tab3">Задание 3</button>
+    <button class="tab-button" data-tab="tab4">Задание 4</button>
+    <button class="tab-button" data-tab="tab5">Задание 5</button>
+  </nav>
 
-<ul>
-	<li *ngFor="let lel of arr; let odd = odd"
-        [style.color]="odd ? 'green' : 'red'">
-		{{ lel }}
-	</li>
-</ul>
-<input [(ngModel)]="num" type="number" />
-@if (num == 10){
-    <p>
-        Дьесьять
-    </p>
-} @else {
-    <p>
-       не дьесьять 
-    </p>
-}-->
-<div>
-  <label>a = </label>
-  <input type="number" [(ngModel)]="aa" />
+  <div class="tab-content-wrapper">
+    <div class="tab-pane active" id="tab1">
+      <div class="task-container">
+        <input type="text" [value]="name"/>
+        <p [textContent]="name"></p>
+        <input [attr.value]="text" />
+        <p>Платформа: {{platform}}</p>
+        <p>Количество приседания с окончанием {{count}}</p>
+        <button (click)="increase($event)">делать</button>
+        <p>Лучшая {{name}}</p>
+        <input type="text" [(ngModel)]="name" /> <br><br>
+        <input type="text" [(ngModel)]="name" />
+        <div *ngIf="isAdmin">
+            text
+        </div>
+        <div *ngIf="num <= 18">
+            уйди отсюда малолетка
+        </div>
+        @if (isAdmin){
+            <div>
+                hilova
+            </div>
+        }
+        @if(num < 18){
+            <div>
+                иди отсюда
+            </div>
+        }
+        @if (isAdmin){
+            <div>
+                da da
+            </div>
+        } @else {
+            <div>
+                neeeeeeeeeeee eto kakoi to sosunok
+            </div>
+        }
+        @if (day <=10){
+            pervaya
+        } @else if(day <= 20){
+            vtoraya
+        } @else if(day <= 31){
+            tretiya
+        }
+        @switch (lang){
+           @case('ru'){
+            <div>
+                пошел бухать!
+            </div>
+           }
+           @case ('en'){
+            <div>
+                go frick go!
+            </div>
+           }
+           @case ('de'){
+            <div>
+                что то на немецком
+            </div>
+           }
+           @default{
+            <div>
+                error
+            </div>
+           }
+        }
+        <ng-template *ngIf="isAdmin">
+            <div>
+                tex
+            </div>
+            <div>
+                texetext
+            </div>
+            <div>
+                texetexetxete
+            </div>
+        </ng-template>
+        <ng-template [ngIf]="age < 18">
+            <div>
+                poka
+            </div>
+        </ng-template>
+      </div>
+    </div>
+    <div class="tab-pane" id="tab2">
+      <div class="task-container">
+        <ul>
+            <li *ngFor="let el of arr">
+                    {{ el * el }}
+            </li>
+        </ul>
+        @for (elem of arr; track $index){
+            <div>
+                {{ elem }}
+            </div>
+        }
+        <ul>
+            <li *ngFor="let ele of arr2; let i = index">
+                    {{ i + 1}}
+                    {{ ele }}
+            </li>
+        </ul>
+        <ul>
+            @for (elele of arr2; track $index){
+                <li>
+                    {{ elele }}
+                    {{ $index + 1}}
+                </li>
+            }
+        </ul>
+        <ul>
+            <li *ngFor="let elell of arr2; let first = first"
+                        [style.color]="first ? 'red' : 'black'">
+                    {{ elell }}
+            </li>
+        </ul>
+        <ul>
+            <li *ngFor="let elelle of arr2; let last = last"
+                        [style.color]="last ? 'red' : 'black'">
+                    {{ elelle }}
+            </li>
+        </ul>
+        <ul>
+            <li *ngFor="let elell of arr2; let first = first
+                        let last = last"
+                        [style.color]="first ? 'red' : (last ? 'green' : 'black')">
+                    {{ elell }}
+            </li>
+        </ul>
+        <ul>
+            <li *ngFor="let le of arr; let even = even"
+                [style.color]="even ? 'red' : 'green'">
+                {{ le }}
+            </li>
+        </ul>
+        <ul>
+            <li *ngFor="let lel of arr; let odd = odd"
+                [style.color]="odd ? 'green' : 'red'">
+                {{ lel }}
+            </li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="tab-pane" id="tab3">
+      <div class="task-container">
+        <input [(ngModel)]="num" type="number" />
+        @if (num == 10){
+            <p>
+                Дьесьять
+            </p>
+        } @else {
+            <p>
+               не дьесьять 
+            </p>
+        }
+        <div>
+          <label>a = </label>
+          <input type="number" [(ngModel)]="aa" />
+        </div>
+        <div>
+          <label>b = </label>
+          <input type="number" [(ngModel)]="bb" />
+        </div>
+        <div>
+          <label bold>Операция: </label>
+          <input [(ngModel)]="opp" placeholder="Введите +, -, *, /" />
+        </div>
+        <p>
+           a = {{aa}}    b = {{bb}}
+        </p>
+        <p>
+            Результат: 
+            @switch (opp){
+                @case("+"){
+                {{aa + bb}}
+                }
+                @case("-"){
+                    {{aa - bb}}
+                }
+                @case("*"){
+                    {{aa * bb}}
+                }
+                @case("/"){
+                    {{aa / bb}}
+                }
+                @default{
+                    Че за операция?
+                }
+            }  
+        </p>
+        <p *while="condition">
+              Первый параграф
+        </p>
+        <p *while="!condition">
+              Второй параграф
+        </p>
+        <button (click)="toggle()">Toggle</button>
+      </div>
+    </div>
+    <div class="tab-pane" id="tab4">
+      <div class="task-container">
+        <div>
+            <div><input [(ngModel)]="name" />
+                <button (click)="addItem(name)">Добавить</button>
+            </div>
+            <ul>
+            @for(item of items; track $index){
+                <li>{{item}}</li>
+            }
+            </ul>
+        </div>
+        <div>
+            <div> 
+                <input [(ngModel)]="name2" />
+                 <button (click)="addItem(name2)">Запихнуть</button> 
+            </div>
+            <ul>
+                @for (item of items; track $index){
+                    <li>{{item}}</li>
+                }
+            </ul>
+        </div>
+        <div>
+            <div><input [(ngModel)]="newItem" />
+                <button (click)="addItem(newItem)">Добавить</button>
+            </div>
+            <ul>
+            @for(item of items; track $index){
+                <li>{{item}}</li>
+            }
+            </ul>
+        </div>
+      </div>
+    </div>
+    <div class="tab-pane" id="tab5">
+      <div class="task-container">
+        <data-comp></data-comp>
+        <data-comp></data-comp>
+      </div>
+    </div>
+  </div>
 </div>
-
-<div>
-  <label>b = </label>
-  <input type="number" [(ngModel)]="bb" />
-</div>
-
-<div>
-  <label bold>Операция: </label>
-  <input [(ngModel)]="opp" placeholder="Введите +, -, *, /" />
-</div>
-<p>
-   a = {{aa}}    b = {{bb}}
-</p>
-   <p>
-    Результат: 
-    @switch (opp){
-        @case("+"){
-        {{aa + bb}}
-        }
-        @case("-"){
-            {{aa - bb}}
-        }
-        @case("*"){
-            {{aa * bb}}
-        }
-        @case("/"){
-            {{aa / bb}}
-        }
-        @default{
-            Че за операция?
-        }
-    }  
-</p>
-
-<p *while="condition">
-      Первый параграф
-    </p>
-    <p *while="!condition">
-      Второй параграф
-    </p>
-    <button (click)="toggle()">Toggle</button>
