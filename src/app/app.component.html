@@ -1,3 +1,4 @@
+<!-- app.component.html -->
 <div class="app-wrapper">
   <header class="site-header">
     <h1>Практос</h1>
@@ -10,9 +11,12 @@
     <button class="tab-button" data-tab="tab3">Задание 3</button>
     <button class="tab-button" data-tab="tab4">Задание 4</button>
     <button class="tab-button" data-tab="tab5">Задание 5</button>
+    <button class="tab-button" data-tab="tab6">Задание 6</button>
+    <button class="tab-button" data-tab="tab7">Задание 7</button>
   </nav>
 
   <div class="tab-content-wrapper">
+    <!-- ЗАДАНИЕ 1 -->
     <div class="tab-pane active" id="tab1">
       <div class="task-container">
         <input type="text" [value]="name"/>
@@ -96,6 +100,8 @@
         </ng-template>
       </div>
     </div>
+
+    <!-- ЗАДАНИЕ 2 -->
     <div class="tab-pane" id="tab2">
       <div class="task-container">
         <ul>
@@ -156,6 +162,7 @@
       </div>
     </div>
 
+    <!-- ЗАДАНИЕ 3 -->
     <div class="tab-pane" id="tab3">
       <div class="task-container">
         <input [(ngModel)]="num" type="number" />
@@ -212,6 +219,8 @@
         <button (click)="toggle()">Toggle</button>
       </div>
     </div>
+
+    <!-- ЗАДАНИЕ 4 -->
     <div class="tab-pane" id="tab4">
       <div class="task-container">
         <div>
@@ -247,10 +256,125 @@
         </div>
       </div>
     </div>
+
+    <!-- ЗАДАНИЕ 5 -->
     <div class="tab-pane" id="tab5">
       <div class="task-container">
         <data-comp></data-comp>
         <data-comp></data-comp>
+      </div>
+    </div>
+
+    <!-- ЗАДАНИЕ 6 -->
+    <div class="tab-pane" id="tab6">
+      <div class="task-container">
+        <span>{{ forPipees | uppercase }}</span>
+        <br />
+        <span> {{ forPipees2 }} </span>
+        <br />
+      </div>
+    </div>
+    <div class="tab-pane" id="tab7">
+      <div class="task-container">
+        <h2>Кастомный пайп</h2>
+        <div class="test-section">
+          <h3>Интерактивный тест</h3>
+          <div class="input-group">
+            <input 
+              type="text" 
+              [(ngModel)]="testNumber" 
+              placeholder="Введите номер телефона"
+              class="test-input"
+            />
+            <select [(ngModel)]="selectedCountry" class="country-select">
+              <option value="BY">BY (+375)</option>
+              <option value="RU">RU (+7)</option>
+              <option value="PL">PL (+48)</option>
+            </select>
+            <button (click)="formatNumber()" class="test-button">Форматировать</button>
+            <button (click)="clearTestInput()" class="clear-button">Очистить</button>
+          </div>
+          <div class="result-display">
+            <strong>Результат:</strong> 
+            <span class="formatted-result">{{ formattedResult }}</span>
+          </div>
+        </div>
+
+        <hr class="divider" />
+
+        <!-- Таблица с примерами -->
+        <h3>Таблица тестовых примеров</h3>
+        <table class="test-table">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Исходный номер</th>
+              <th>Страна</th>
+              <th>Форматированный результат</th>
+              <th>Статус</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let test of testNumbers; let i = index">
+              <td>{{ i + 1 }}</td>
+              <td class="original-number">"{{ test.number }}"</td>
+              <td><span class="country-badge">{{ test.country }}</span></td>
+              <td class="formatted-cell">
+                {{ test.number | formatPhone:test.country }}
+              </td>
+              <td>
+                <span 
+                  class="status-badge"
+                  [class.success]="isValidNumber(test.number, test.country)"
+                  [class.error]="!isValidNumber(test.number, test.country)"
+                >
+                  {{ isValidNumber(test.number, test.country) ? 'Yes' : 'No' }}
+                </span>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+
+        <hr class="divider" />
+        <h3>Дополнительные проверки</h3>
+        <div class="additional-tests">
+          <div class="test-card">
+            <h4>Проверка на null</h4>
+            <p>Результат: {{ null | formatPhone:'BY' }}</p>
+            <p class="test-description">Пайп не падает и показывает заглушку</p>
+          </div>
+          
+          <div class="test-card">
+            <h4>Проверка на undefined</h4>
+            <p>Результат: {{ undefined | formatPhone:'RU' }}</p>
+            <p class="test-description">Пайп не падает и показывает заглушку</p>
+          </div>
+        </div>
+
+        <hr class="divider" />
+        <h3>Форматы для разных стран</h3>
+        <div class="format-demo">
+          <div class="format-card by-format">
+            <h4>🇧🇾 Беларусь (BY)</h4>
+            <p>Формат: +375 (XX) XXX-XX-XX</p>
+            <p>Пример: {{ '251234567' | formatPhone:'BY' }}</p>
+            <code>+375 (25) 123-45-67</code>
+          </div>
+          
+          <div class="format-card ru-format">
+            <h4>🇷🇺 Россия (RU)</h4>
+            <p>Формат: +7 (XXX) XXX-XX-XX</p>
+            <p>Пример: {{ '9991234567' | formatPhone:'RU' }}</p>
+            <code>+7 (999) 123-45-67</code>
+          </div>
+          
+          <div class="format-card pl-format">
+            <h4>🇵🇱 Польша (PL)</h4>
+            <p>Формат: +48 XXX XXX XXX</p>
+            <p>Пример: {{ '123456789' | formatPhone:'PL' }}</p>
+            <code>+48 123 456 789</code>
+          </div>
+        </div>
       </div>
     </div>
   </div>

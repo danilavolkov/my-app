@@ -6,18 +6,15 @@ import { BoldDirective } from "./bold.directive";
 import { WhileDirective } from "./while.directive";
 import { DataService } from "./data.service";
 import { DataComponent } from "./data.component";
+import { NgModel } from '@angular/forms';
+import { FormatPhone } from './pipe/custom-pipe-pipe';
 
 @Component({
   selector: 'my-app',
   standalone: true,
-  imports: [
-    CommonModule, 
-    // ChildComponent,
-    FormsModule, 
-    BoldDirective, 
-    WhileDirective, 
-    DataComponent
-  ],
+  imports: [CommonModule, // ChildComponent,
+  FormsModule, FormatPhone,
+  BoldDirective, WhileDirective, DataComponent,],
   providers: [DataService],
   styleUrls: ['./app.component.css'],
   templateUrl: './app.component.html'
@@ -45,17 +42,32 @@ export class AppComponent implements OnInit, AfterViewInit {
   items: string[] = [];
   name2: string = "";
   newItem: string = "";
-
+  public testNumbers = [
+    { number: '251234567', country: 'BY' as const, description: 'Корректный BY номер' },
+    { number: '251234567phone.', country: 'BY' as const, description: 'BY с текстом' },
+    { number: '   9991234567!!!', country: 'RU' as const, description: 'RU с пробелами' },
+    { number: '123456789', country: 'PL' as const, description: 'Корректный PL номер' },
+    { number: '48123456789', country: 'PL' as const, description: 'PL с кодом страны' },
+    { number: 'abc123', country: 'BY' as const, description: 'Некорректный номер' },
+    { number: '', country: 'BY' as const, description: 'Пустая строка' },
+    { number: '12', country: 'RU' as const, description: 'Слишком короткий' },
+    { number: '123456789012345', country: 'BY' as const, description: 'Слишком длинный' },
+    { number: '12345', country: 'PL' as const, description: 'Неверная длина для PL' },
+    { number: '+375251234567', country: 'BY' as const, description: 'С +375' },
+    { number: '8-999-123-45-67', country: 'RU' as const, description: 'С дефисами' }
+  ];
+  public testNumber: string = '';
+  public selectedCountry: 'BY' | 'RU' | 'PL' = 'BY';
+  public formattedResult: string = '';
+  public countries = ['BY', 'RU', 'PL'] as const;
   constructor(private dataService: DataService) { }
   increase($event: any): void {
     this.count++;
     console.log($event);
   }
-
   toggle() {
     this.condition = !this.condition;
   }
-
   addItem(value: string) {
     if (value && value.trim()) {
       this.dataService.addData(value.trim());
@@ -65,15 +77,38 @@ export class AppComponent implements OnInit, AfterViewInit {
       this.items = this.dataService.getData();
     }
   }
-
+  public formatNumber(): void {
+    if (this.testNumber && this.testNumber.trim()) {
+      const pipe = new FormatPhone();
+      this.formattedResult = pipe.transform(this.testNumber.trim(), this.selectedCountry);
+    } else {
+      this.formattedResult = 'Введите номер телефона';
+    }
+  }
+  public isValidNumber(value: string, country: 'BY' | 'RU' | 'PL'): boolean {
+    if (!value) return false;
+    
+    const cleaned = value.replace(/\D/g, '');
+    
+    const patterns = {
+      'BY': /^\d{9}$/,
+      'RU': /^\d{10}$/,
+      'PL': /^\d{9}$/
+    };
+    
+    return patterns[country].test(cleaned);
+  }
+  public clearTestInput(): void {
+    this.testNumber = '';
+    this.formattedResult = '';
+  }
   ngOnInit() {
     this.items = this.dataService.getData();
   }
   ngAfterViewInit() {
     setTimeout(() => {
       const buttons = document.querySelectorAll('.tab-button');
-      const panes = document.querySelectorAll('.tab-pane');
-      
+      const panes = document.querySelectorAll('.tab-pane');   
       buttons.forEach((button) => {
         button.addEventListener('click', function(this: HTMLButtonElement) {
           buttons.forEach(b => b.classList.remove('active'));
@@ -88,4 +123,6 @@ export class AppComponent implements OnInit, AfterViewInit {
       });
     }, 100);
   }
+  public forPipees = 'rerun Al-Haitam';
+  public forPipees2 = 'For GOD PLEASE!!!';
 }
