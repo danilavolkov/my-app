@@ -8,13 +8,45 @@ import { DataService } from "./data.service";
 import { DataComponent } from "./data.component";
 import { NgModel } from '@angular/forms';
 import { FormatPhone } from './pipe/custom-pipe-pipe';
+import {Routes} from '@angular/router';
+import {Home} from './pizzeria/home/home';
+import {Menu} from './pizzeria/menu/menu';
+import {Pizza} from './pizzeria/pizza/pizza';
+import {Contacts} from './pizzeria/contacts/contacts';
+import { Order } from './pizzeria/order/order';
+import { PizzeriaLayout } from './pizzeria/pizzeria-layout/pizzeria-layout';
+import { RouterOutlet, RouterModule } from '@angular/router';
+
+
+export const routes: Routes = [
+  { 
+    path: 'pizzeria', 
+    component: PizzeriaLayout,
+    children: [
+      { path: '', component: Home },
+      { path: 'menu', component: Menu },
+      { path: 'pizza/:id', component: Pizza },
+      { path: 'contacts', component: Contacts },
+      { path: 'order', component: Order },
+    ]
+  },
+
+  {path: '', component: Home},
+  {path: 'menu', component: Menu},
+  {path: 'pizza/:id', component: Pizza},
+  {path: 'contacts', component: Contacts},
+  {path: 'order', component: Order },
+];
 
 @Component({
   selector: 'my-app',
   standalone: true,
   imports: [CommonModule, // ChildComponent,
   FormsModule, FormatPhone,
-  BoldDirective, WhileDirective, DataComponent,],
+  BoldDirective, WhileDirective, DataComponent, //RouterOutlet, 
+  RouterModule, 
+  //PizzeriaLayout
+  ],
   providers: [DataService],
   styleUrls: ['./app.component.css'],
   templateUrl: './app.component.html'
@@ -103,8 +135,14 @@ export class AppComponent implements OnInit, AfterViewInit {
     this.formattedResult = '';
   }
   ngOnInit() {
-    this.items = this.dataService.getData();
+  this.items = this.dataService.getData();
+  if (localStorage.getItem('openPizzeria') === 'true') {
+    localStorage.removeItem('openPizzeria');
+    setTimeout(() => {
+      window.location.hash = '/pizzeria';
+    }, 100);
   }
+}
   ngAfterViewInit() {
     setTimeout(() => {
       const buttons = document.querySelectorAll('.tab-button');
@@ -125,4 +163,9 @@ export class AppComponent implements OnInit, AfterViewInit {
   }
   public forPipees = 'rerun Al-Haitam';
   public forPipees2 = 'For GOD PLEASE!!!';
+ public openPizzeria(): void {
+  localStorage.setItem('openPizzeria', 'true');
+  window.open(window.location.href, '_blank');
+}
+
 }

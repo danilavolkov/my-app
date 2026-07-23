@@ -1,0 +1,24 @@
+<div class="pizzeria-wrapper">
+  <header class="pizzeria-header">
+    <div class="header-content">
+      <h1>Пиццерия</h1>
+      <p class="slogan">Вкусная пицца с кошмарами</p>
+    </div>
+  </header>
+
+  <nav class="pizzeria-nav">
+    <a routerLink="/pizzeria" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+    Главная</a>
+    <a routerLink="/pizzeria/menu" routerLinkActive="active">Меню</a>
+    <a routerLink="/pizzeria/contacts" routerLinkActive="active">Контакты</a>
+    <a routerLink="/pizzeria/order" routerLinkActive="active">Оформить заказ</a>
+  </nav>
+
+  <main class="pizzeria-content">
+    <router-outlet></router-outlet>
+  </main>
+
+  <footer class="pizzeria-footer">
+    <p>&copy; {{ currentYear }} Пиццерия. Все права защищены. А вы нет. Мы не несем ответсвенность за смерти</p>
+  </footer>
+</div>

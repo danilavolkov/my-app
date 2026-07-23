@@ -1,0 +1,129 @@
+<div class="order-container">
+  <h1>Оформить заказ</h1>
+  
+  <form [formGroup]="orderForm" (ngSubmit)="onSubmit()">
+    <!-- Поле First Name -->
+    <div class="form-group">
+      <label for="firstName">
+        Имя <span class="required">*</span>
+      </label>
+      <input 
+        type="text" 
+        id="firstName" 
+        formControlName="firstName"
+        [class.valid]="orderForm.get('firstName')?.valid && orderForm.get('firstName')?.touched"
+        [class.invalid]="orderForm.get('firstName')?.invalid && orderForm.get('firstName')?.touched"
+        placeholder="Введите ваше имя">
+      
+      @if (orderForm.get('firstName')?.invalid && orderForm.get('firstName')?.touched) {
+        <div class="error-message">
+          @if (orderForm.get('firstName')?.errors?.['required']) {
+            <span>Имя обязательно для заполнения</span>
+          }
+          @if (orderForm.get('firstName')?.errors?.['minlength']) {
+            <span>Имя должно содержать минимум 2 символа</span>
+          }
+        </div>
+      }
+    </div>
+
+    <!-- Поле Last Name -->
+    <div class="form-group">
+      <label for="lastName">
+        Фамилия <span class="required">*</span>
+      </label>
+      <input 
+        type="text" 
+        id="lastName" 
+        formControlName="lastName"
+        [class.valid]="orderForm.get('lastName')?.valid && orderForm.get('lastName')?.touched"
+        [class.invalid]="orderForm.get('lastName')?.invalid && orderForm.get('lastName')?.touched"
+        placeholder="Введите вашу фамилию">
+      
+      @if (orderForm.get('lastName')?.invalid && orderForm.get('lastName')?.touched) {
+        <div class="error-message">
+          @if (orderForm.get('lastName')?.errors?.['required']) {
+            <span>Фамилия обязательна для заполнения</span>
+          }
+          @if (orderForm.get('lastName')?.errors?.['minlength']) {
+            <span>Фамилия должна содержать минимум 5 символов</span>
+          }
+          @if (orderForm.get('lastName')?.errors?.['maxlength']) {
+            <span>Фамилия должна содержать максимум 20 символов</span>
+          }
+        </div>
+      }
+    </div>
+
+    <!-- Поле Email -->
+    <div class="form-group">
+      <label for="email">
+        Email <span class="required">*</span>
+      </label>
+      <input 
+        type="email" 
+        id="email" 
+        formControlName="email"
+        [class.valid]="orderForm.get('email')?.valid && orderForm.get('email')?.touched"
+        [class.invalid]="orderForm.get('email')?.invalid && orderForm.get('email')?.touched"
+        placeholder="example@gmail.com">
+      
+      @if (orderForm.get('email')?.invalid && orderForm.get('email')?.touched) {
+        <div class="error-message">
+          @if (orderForm.get('email')?.errors?.['required']) {
+            <span>Email обязателен для заполнения</span>
+          }
+          @if (orderForm.get('email')?.errors?.['email']) {
+            <span>Введите корректный email адрес</span>
+          }
+        </div>
+      }
+    </div>
+
+    <!-- Поле Age -->
+    <div class="form-group">
+      <label for="age">Возраст</label>
+      <input 
+        type="number" 
+        id="age" 
+        formControlName="age"
+        [class.valid]="orderForm.get('age')?.valid && orderForm.get('age')?.touched"
+        [class.invalid]="orderForm.get('age')?.invalid && orderForm.get('age')?.touched"
+        placeholder="Введите ваш возраст">
+      
+      @if (orderForm.get('age')?.invalid && orderForm.get('age')?.touched) {
+        <div class="error-message">
+          @if (orderForm.get('age')?.errors?.['min'] || orderForm.get('age')?.errors?.['max']) {
+            <span>Возраст должен быть от 18 до 65 лет</span>
+          }
+        </div>
+      }
+    </div>
+
+    <!-- Поле Agree to Terms -->
+    <div class="form-group checkbox-group">
+      <label for="agreeToTerms">
+        <input 
+          type="checkbox" 
+          id="agreeToTerms" 
+          formControlName="agreeToTerms">
+        Согласие с правилами компании <span class="required">*</span>
+      </label>
+    </div>
+
+    <!-- Кнопка отправки -->
+    <button 
+      type="submit" 
+      [disabled]="!orderForm.valid"
+      class="submit-btn">
+      Отправить заказ
+    </button>
+
+    <!-- Сообщение об успешной отправке -->
+    @if (orderForm.valid && orderForm.touched && orderForm.dirty) {
+      <div class="success-message">
+        Форма заполнена корректно! Нажмите "Отправить заказ" для завершения.
+      </div>
+    }
+  </form>
+</div>
