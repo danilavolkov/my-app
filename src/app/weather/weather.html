@@ -1,0 +1,28 @@
+<div class="weather-container">
+  <h2>Погода в городах РБ</h2>
+  
+  <div class="buttons">
+    @for (city of cities; track city.id) {
+      <button 
+        (click)="onCitySelect(city)"
+        [class.active]="selectedCity()?.id === city.id"
+      >
+        {{ city.name }}
+      </button>
+    }
+  </div>
+  
+  @if (isLoading()) {
+    <p>Загрузка данных с метеостанции...</p>
+  }
+
+  @if (weather(); as data) {
+    <div class="weather-info">
+      <h3>Текущая сводка: {{ selectedCity()?.name }}</h3>
+      <p>Температура: <strong>{{ data.current.temperature_2m }} {{ data.current_units.temperature_2m }}</strong></p>
+      <p>Скорость ветра: <strong>{{ data.current.wind_speed_10m }} {{ data.current_units.wind_speed_10m }}</strong></p>
+      <p>Влажность: <strong>{{ data.current.relative_humidity_2m }} {{ data.current_units.relative_humidity_2m }}</strong></p>
+      <p>Вероятность осадков: <strong>{{ data.current.precipitation_probability }} {{ data.current_units.precipitation_probability }}</strong></p>
+    </div>
+  }
+</div>
