@@ -16,6 +16,7 @@ import {Contacts} from './pizzeria/contacts/contacts';
 import { Order } from './pizzeria/order/order';
 import { PizzeriaLayout } from './pizzeria/pizzeria-layout/pizzeria-layout';
 import { RouterOutlet, RouterModule } from '@angular/router';
+import { Weather } from './weather/weather';
 
 
 export const routes: Routes = [
@@ -45,7 +46,8 @@ export const routes: Routes = [
   FormsModule, FormatPhone,
   BoldDirective, WhileDirective, DataComponent, //RouterOutlet, 
   RouterModule, 
-  //PizzeriaLayout
+  PizzeriaLayout,
+  Weather
   ],
   providers: [DataService],
   styleUrls: ['./app.component.css'],
