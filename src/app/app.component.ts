@@ -1,4 +1,4 @@
-import { Component, OnInit, AfterViewInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 // import { ChildComponent } from './child.component';
@@ -15,7 +15,7 @@ import {Pizza} from './pizzeria/pizza/pizza';
 import {Contacts} from './pizzeria/contacts/contacts';
 import { Order } from './pizzeria/order/order';
 import { PizzeriaLayout } from './pizzeria/pizzeria-layout/pizzeria-layout';
-import { RouterOutlet, RouterModule } from '@angular/router';
+import { RouterOutlet, RouterModule, Router, ActivatedRoute } from '@angular/router';
 import { Weather } from './weather/weather';
 
 
@@ -54,6 +54,10 @@ export const routes: Routes = [
   templateUrl: './app.component.html'
 })
 export class AppComponent implements OnInit, AfterViewInit {
+  private route = inject(ActivatedRoute);
+  private router = inject(Router);
+  activeTab: string = 'tab1';
+
   name = "Джанет";
   platform = "YouTube";
   text = "Самая популярная сейчас";
@@ -144,7 +148,23 @@ export class AppComponent implements OnInit, AfterViewInit {
       window.location.hash = '/pizzeria';
     }, 100);
   }
+
+  this.route.queryParams.subscribe(params => {
+    if (params['tab']){
+      this.activeTab = params['tab'];
+    }
+  });
 }
+
+  selectTab(tabId: string){
+    this.activeTab = tabId;
+
+    this.router.navigate([], {
+      relativeTo: this.route,
+      queryParams: { tab: tabId },
+      queryParamsHandling: 'merge'
+    });
+  }
   ngAfterViewInit() {
     setTimeout(() => {
       const buttons = document.querySelectorAll('.tab-button');
