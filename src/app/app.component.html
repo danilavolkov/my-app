@@ -5,21 +5,21 @@
   </header>
 
   <nav class="tab-navigation">
-    <button class="tab-button active" data-tab="tab1">Задание 1</button>
-    <button class="tab-button" data-tab="tab2">Задание 2</button>
-    <button class="tab-button" data-tab="tab3">Задание 3</button>
-    <button class="tab-button" data-tab="tab4">Задание 4</button>
-    <button class="tab-button" data-tab="tab5">Задание 5</button>
-    <button class="tab-button" data-tab="tab6">Задание 6</button>
-    <button class="tab-button" data-tab="tab7">Задание 7</button>
-    <button class="tab-button" data-tab="tab8">Задание 8</button>
-    <button class="tab-button" data-tab="tab9">Задание 9</button>
-    <button class="tab-button" data-tab="tab10">Задание 10</button>
+    <button class="tab-button" [class.active]="activeTab === 'tab1'" (click)="selectTab('tab1')">Задание 1</button>
+    <button class="tab-button" [class.active]="activeTab === 'tab2'" (click)="selectTab('tab2')">Задание 2</button>
+    <button class="tab-button" [class.active]="activeTab === 'tab3'" (click)="selectTab('tab3')">Задание 3</button>
+    <button class="tab-button" [class.active]="activeTab === 'tab4'" (click)="selectTab('tab4')">Задание 4</button>
+    <button class="tab-button" [class.active]="activeTab === 'tab5'" (click)="selectTab('tab5')">Задание 5</button>
+    <button class="tab-button" [class.active]="activeTab === 'tab6'" (click)="selectTab('tab6')">Задание 6</button>
+    <button class="tab-button" [class.active]="activeTab === 'tab7'" (click)="selectTab('tab7')">Задание 7</button>
+    <button class="tab-button" [class.active]="activeTab === 'tab8'" (click)="selectTab('tab8')">Задание 8</button>
+    <button class="tab-button" [class.active]="activeTab === 'tab9'" (click)="selectTab('tab9')">Задание 9</button>
+    <button class="tab-button" [class.active]="activeTab === 'tab10'" (click)="selectTab('tab10')">Задание 10</button>
   </nav>
 
   <div class="tab-content-wrapper">
     <!-- ЗАДАНИЕ 1 -->
-    <div class="tab-pane active" id="tab1">
+    <div class="tab-pane" [class.active]="activeTab === 'tab1'" id="tab1">
       <div class="task-container">
         <input type="text" [value]="name"/>
         <p [textContent]="name"></p>
@@ -104,7 +104,7 @@
     </div>
 
     <!-- ЗАДАНИЕ 2 -->
-    <div class="tab-pane" id="tab2">
+    <div class="tab-pane" [class.active]="activeTab === 'tab2'" id="tab2">
       <div class="task-container">
         <ul>
             <li *ngFor="let el of arr">
@@ -165,7 +165,7 @@
     </div>
 
     <!-- ЗАДАНИЕ 3 -->
-    <div class="tab-pane" id="tab3">
+    <div class="tab-pane" [class.active]="activeTab === 'tab3'" id="tab3">
       <div class="task-container">
         <input [(ngModel)]="num" type="number" />
         @if (num == 10){
@@ -223,7 +223,7 @@
     </div>
 
     <!-- ЗАДАНИЕ 4 -->
-    <div class="tab-pane" id="tab4">
+    <div class="tab-pane" [class.active]="activeTab === 'tab4'" id="tab4">
       <div class="task-container">
         <div>
             <div><input [(ngModel)]="name" />
@@ -260,7 +260,7 @@
     </div>
 
     <!-- ЗАДАНИЕ 5 -->
-    <div class="tab-pane" id="tab5">
+    <div class="tab-pane" [class.active]="activeTab === 'tab5'" id="tab5">
       <div class="task-container">
         <data-comp></data-comp>
         <data-comp></data-comp>
@@ -268,7 +268,7 @@
     </div>
 
     <!-- ЗАДАНИЕ 6 -->
-    <div class="tab-pane" id="tab6">
+    <div class="tab-pane" [class.active]="activeTab === 'tab6'" id="tab6">
       <div class="task-container">
         <span>{{ forPipees | uppercase }}</span>
         <br />
@@ -278,7 +278,7 @@
     </div>
 
     <!-- ЗАДАНИЕ 7 -->
-    <div class="tab-pane" id="tab7">
+    <div class="tab-pane" [class.active]="activeTab === 'tab7'" id="tab7">
       <div class="task-container">
         <h2>Кастомный пайп</h2>
         <div class="test-section">
@@ -381,40 +381,50 @@
       </div>
     </div>
 
-<!-- ЗАДАНИЕ 8 -->
-<div class="tab-pane" id="tab8">
-  <div class="task-container">
-    <nav>
-      <a routerLink="/">Главная</a> |
-      <a routerLink="/menu">Меню</a> |
-      <a routerLink="/contacts">Контакты</a> |
-      <a routerLink="/order">Оформить заказ</a>
-    </nav>
+    <!-- ЗАДАНИЕ 8 -->
+    <div class="tab-pane" [class.active]="activeTab === 'tab8'" id="tab8">
+      <div class="task-container">
+        <nav>
+          <a routerLink="/">Главная</a> |
+          <a routerLink="/menu">Меню</a> |
+          <a routerLink="/contacts">Контакты</a> |
+          <a routerLink="/order">Оформить заказ</a>
+        </nav>
 
-    <router-outlet></router-outlet>
-  </div>
-</div>
+        <router-outlet></router-outlet>
+      </div>
+    </div>
 
-<!-- ЗАДАНИЕ 9 -->
-<div class="tab-pane" id="tab9">
-  <div class="task-container">
-    <div class="pizzeria-launch">
-      <h2>Добро пожаловать в пиццерию Freddy Family Dinner</h2>
-      <p>Для отдельной страницы, нажмите, если не боитесь</p>
-      
-      <button class="pizzeria-launch-btn" (click)="openPizzeria()">
-        Открыть пиццерию
-        <span class="btn-arrow">→</span>
-      </button>
-      
-      <div class="pizzeria-info">
-        <h3>Что включает твоя кончина:</h3>
-        <ul>
-          <li>Главная страница</li>
-          <li>Меню с пиццами</li>
-          <li>Контакты</li>
-          <li>Форма заказа с валидацией</li>
-        </ul>
+    <!-- ЗАДАНИЕ 9 -->
+    <div class="tab-pane" [class.active]="activeTab === 'tab9'" id="tab9">
+      <div class="task-container">
+        <div class="pizzeria-launch">
+          <h2>Добро пожаловать в пиццерию Freddy Family Dinner</h2>
+          <p>Для отдельной страницы, нажмите, если не боитесь</p>
+          
+          <button class="pizzeria-launch-btn" (click)="openPizzeria()">
+            Открыть пиццерию
+            <span class="btn-arrow">→</span>
+          </button>
+          
+          <div class="pizzeria-info">
+            <h3>Что включает твоя кончина:</h3>
+            <ul>
+              <li>Главная страница</li>
+              <li>Меню с пиццами</li>
+              <li>Контакты</li>
+              <li>Форма заказа с валидацией</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ЗАДАНИЕ 10 -->
+    <div class="tab-pane" [class.active]="activeTab === 'tab10'" id="tab10">
+      <div class="task-container">
+        <h2>Прогноз погоды (Open-Meteo API)</h2>
+        <app-weather></app-weather> 
       </div>
     </div>
   </div>

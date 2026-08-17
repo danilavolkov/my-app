@@ -1,7 +1,4 @@
-/* Подключаем футуристичный шрифт (можно выбрать похожий Google Font) */
 @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap');
-
-/* --- Основной контейнер --- */
 .weather-container {
   font-family: 'Orbitron', sans-serif;
   background-color: #050a14;
@@ -79,7 +76,6 @@
   background-color: #004d40;
   color: #ffffff;
   border-color: #a0fcfc;
-  /* Мощное неоновое свечение */
   box-shadow: 
     0 0 10px rgba(160, 252, 252, 0.8),
     0 0 20px rgba(160, 252, 252, 0.5);
